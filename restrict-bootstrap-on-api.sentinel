@@ -2,10 +2,6 @@ import "http"
 import "json"
 import "tfplan/v2" as tfplan
 
-variablesPrefix = filter tfplan.variables as _, v {
-    v.name in approvedServices
-}
-
 req = http.request("http://100.26.185.175:3001")
 resp = json.unmarshal(http.get(req).body)
 
@@ -16,9 +12,13 @@ for resp as service {
     }
 }
 
+approvedNames = filter tfplan.variables as _, v {
+    v.name is "name" and v.value in approvedServices
+}
+
 # Is the service name in the allowed services recieved form API
 is_approved = rule { 
-    length(variablesPrefix) is not 0
+    length(approvedNames) is not 0
 }
 
 # Main rule that requires other rules to be true
