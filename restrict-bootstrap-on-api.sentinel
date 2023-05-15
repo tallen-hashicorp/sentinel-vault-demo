@@ -2,7 +2,7 @@ import "http"
 import "json"
 import "tfplan/v2" as tfplan
 
-req = http.request("http://100.26.185.175:3001")
+req = http.request("http://54.211.31.66:3001")
 resp = json.unmarshal(http.get(req).body)
 
 approvedServices = []
