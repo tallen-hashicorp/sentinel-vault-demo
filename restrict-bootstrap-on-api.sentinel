@@ -1,0 +1,23 @@
+import "http"
+import "json"
+
+
+req = http.request("http://100.26.185.175:3001")
+resp = json.unmarshal(http.get(req).body)
+
+approvedServices = []
+for resp as service {
+    if service["approved"] {
+        append(approvedServices,service["name"])
+    }
+}
+
+# Is the service name in the allowed services recieved form API
+is_approved = rule { 
+    name in approvedServices
+}
+
+# Main rule that requires other rules to be true
+main = rule {
+    is_approved
+}
