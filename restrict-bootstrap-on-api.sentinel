@@ -12,11 +12,14 @@ for resp as service {
     }
 }
 
+print("approvedServices: " + approvedServices)
+
 approvedNames = filter tfplan.variables as _, v {
+    print("name:" + v.name)
     v.name is "name" and v.value in approvedServices
 }
 
-print(approvedNames)
+print("approvedNames: " + approvedNames)
 
 # Is the service name in the allowed services recieved form API
 is_approved = rule { 
