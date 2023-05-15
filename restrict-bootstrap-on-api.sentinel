@@ -2,7 +2,7 @@ import "http"
 import "json"
 import "tfplan/v2" as tfplan
 
-name = tfplan.variables["name"].value
+name = tfplan.variables["name"]
 
 req = http.request("http://100.26.185.175:3001")
 resp = json.unmarshal(http.get(req).body)
