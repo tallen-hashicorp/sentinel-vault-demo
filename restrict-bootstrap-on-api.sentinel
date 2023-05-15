@@ -14,6 +14,7 @@ for resp as service {
 
 approvedNames = filter tfplan.variables as _, v {
     v.name is "name" and v.value in approvedServices
+    log(v.name)
 }
 
 # Is the service name in the allowed services recieved form API
