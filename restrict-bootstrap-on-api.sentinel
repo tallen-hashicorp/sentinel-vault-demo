@@ -7,7 +7,7 @@ variablesPrefix = filter tfplan.variables as _, v {
     print(v)
 }
 
-name="test"
+name = "test"
 
 req = http.request("http://100.26.185.175:3001")
 resp = json.unmarshal(http.get(req).body)
