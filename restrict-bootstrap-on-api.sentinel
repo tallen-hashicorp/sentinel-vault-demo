@@ -12,7 +12,6 @@ for resp as service {
     }
 }
 
-# TODO - This should look at the resource not the variable
 approvedNames = filter tfplan.variables as _, v {
     v.name is "name" and v.value in approvedServices
 }
